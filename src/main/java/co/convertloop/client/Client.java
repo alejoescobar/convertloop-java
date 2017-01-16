@@ -1,10 +1,10 @@
+package co.convertloop.client;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.MissingFormatArgumentException;
@@ -72,3 +72,4 @@ public class Client {
     }
 
 }
+
