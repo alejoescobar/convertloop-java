@@ -17,7 +17,7 @@ public class Client {
 
     private String appId;
     private String apiKey;
-    private String baseUrl = "http://api.lvh.me:3000/";
+    private String baseUrl = "https://api.convertloop.co/";
     private String version = "v1";
     private final String LIB_VERSION = "java-0.1.0";
 
