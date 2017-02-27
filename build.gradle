@@ -1,7 +1,11 @@
-group 'co.convertloop'
-version '1.0-SNAPSHOT'
+group = 'co.convertloop'
+version = '0.1.0'
+ext.packaging = 'jar'
 
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.5
 
@@ -12,4 +16,69 @@ repositories {
 dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives jar
+
+    archives javadocJar
+    archives sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            pom.project {
+                name 'Convertloop'
+                packaging 'jar'
+                description 'Java client for Convertloop, a marketing automation tool'
+                url 'https://github.com/alejoescobar/convertloop-java'
+
+                scm {
+                    url 'scm:git@github.com:alejoescobar/convertloop-java.git'
+                    connection 'scm:git@github.com:alejoescobar/convertloop-java.git'
+                    developerConnection 'scm:git@github.com:alejoescobar/convertloop-java.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'alejoescobar'
+                        name 'Alejandro Escobar'
+                    }
+                }
+            }
+        }
+    }
 }
