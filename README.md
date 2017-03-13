@@ -9,7 +9,7 @@ A Java client of the ConvertLoop REST API. You can sign up for a ConvertLoop acc
 Add the dependency to your `build.gradle` file:
 ```groovy
 dependencies {
-    compile 'co.convertloop:0.1.0'
+    compile 'co.convertloop:convertloop-java:0.1.0'
 }
 ```
 
@@ -89,5 +89,3 @@ convertloop.sendEventLog(event);
 ```
 
 If you don't specify the `ocurred_at` key, the current time will be used. You can use the `person` key to add **custom attributes** and **tags** to that person.
-
-
