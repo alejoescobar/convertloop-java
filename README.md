@@ -56,7 +56,6 @@ convertloop.createOrUpdatePerson(person);
 Any key different to `pid`, `user_id`, `email`, `first_seen_at`, `last_seen_at`, `add_tags`, and `remove_tags` will be treated as a **custom attribute** of the person.
 
 You can add or remove tags using the `add_tags` and `remove_tags` keys:
-import java.util.HashMap;
 
 ```java
 import java.util.HashMap;
