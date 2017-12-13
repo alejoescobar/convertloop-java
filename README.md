@@ -53,9 +53,9 @@ person.put("plan", "free");
 convertloop.createOrUpdatePerson(person);
 ```
 
-Any key different to `pid`, `user_id`, `email`, `first_seen_at`, `last_seen_at`, `add_tags`, and `remove_tags` will be treated as a **custom attribute** of the person.
+Any key different to `pid`, `user_id`, `email`, `first_seen_at`, `last_seen_at`, `add_to_segments`, and `remove_from_segments` will be treated as a **custom attribute** of the person.
 
-You can add or remove tags using the `add_tags` and `remove_tags` keys:
+You can add or remove people from a segment ussing the  `add_to_segments` and `remove_from_segments` keys:
 
 ```java
 import java.util.HashMap;
@@ -63,8 +63,8 @@ import java.util.HashMap;
 HashMap<String, Object> person = new HashMap<String, Object>();
 person.put("email", "alejo.escobar@convertloop.co");
 person.put("plan", "free");
-person.put("add_tags", new String[] {"Learn Something"});
-person.put("remove_tags", new String[] {"Lead"});
+person.put("add_to_segments", new String[] {"Learn Something"});
+person.put("remove_from_segments", new String[] {"Lead"});
 convertloop.createOrUpdate(person);
 ```
 
@@ -87,4 +87,4 @@ event.put("occurred_at", new Date());
 convertloop.sendEventLog(event);
 ```
 
-If you don't specify the `ocurred_at` key, the current time will be used. You can use the `person` key to add **custom attributes** and **tags** to that person.
+If you don't specify the `ocurred_at` key, the current time will be used. You can use the `person` key to add **custom attributes** to that person, or add or remove that person to/from **segments**.
